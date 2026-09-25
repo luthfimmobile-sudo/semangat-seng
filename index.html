@@ -14,14 +14,13 @@
             align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            background-image: url('https://unsplash.com'); /* Langit senja puitis penenang */
+            background-image: url('https://unsplash.com'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
         }
 
-        /* Lapisan gelap transparan yang membuat teks sangat kontras dan nyaman dibaca */
         .overlay {
             position: fixed;
             top: 0;
@@ -84,9 +83,6 @@
             margin-bottom: 15px;
             border-bottom: 2px dashed #ffe5ec;
             padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         .letter-text {
             font-size: 16px;
@@ -95,7 +91,6 @@
             min-height: 160px;
         }
         
-        /* Tombol navigasi lanjut paragraf */
         .btn-next {
             display: none;
             margin-top: 25px;
@@ -109,15 +104,11 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-            transition: background 0.3s;
-        }
-        .btn-next:hover {
-            background-color: #ff758f;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 77, 109, 0.6); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
     </style>
 </head>
@@ -126,7 +117,7 @@
     <div class="overlay"></div>
 
     <div class="container">
-        <!-- Tombol Awal untuk Memancing Audio HP Keluar -->
+        <!-- Tombol Utama -->
         <button class="start-btn" id="startBtn" onclick="mulaiWebsite()">Buka Pesan dari Aku ❤️</button>
 
         <!-- Bagian Wadah Surat Dukungan -->
@@ -137,11 +128,10 @@
         </div>
     </div>
 
-    <!-- 🎵 AUDIO INSTRUMEN PIANO SEDIH & MENENANGKAN (Bypass Sistem Mobile Browser) -->
-    <audio id="bgMusic" src="https://soundhelix.com" loop preload="auto"></audio>
+    <!-- 🎵 AUDIO LAGU (Raim Laode - Menari-nari) -->
+    <audio id="bgMusic" src="https://catbox.moe" loop preload="auto"></audio>
 
     <script>
-        // Paragraf puitis penyemangat dibagi menjadi 3 bagian cerita (Storytelling)
         const babakSurat = [
             "Aku tahu akhir-akhir ini dunia lagi gak ramah ya sama kamu? Masalah datang bertubi-tubi seolah gak kasih kamu waktu buat napas. Kalau kamu lelah dengan beban itu semua, gak apa-apa kok buat nangis dulu di depan aku...",
             "Tapi aku cuma mau kamu tahu satu hal. Kamu gak pernah sendirian menghadapi ini semua. Di saat kamu merasa semua orang menjauh atau sudut dunia ini terasa gelap, aku akan tetap berdiri tepat di belakang kamu. Siap jadi sandaran dan pelindung kamu kapan pun kamu butuh.",
@@ -155,13 +145,13 @@
         function mulaiWebsite() {
             const music = document.getElementById('bgMusic');
             
-            // Otomatis putar musik karena sudah dipicu interaksi klik fisik user
-            music.play().catch(error => console.log("Audio tertahan proteksi sistem browser"));
+            // Putar musik Raim Laode
+            music.play().catch(error => console.log("Musik diputar."));
 
-            // Sembunyikan tombol pembuka
-            document.getElementById('startBtn').style.style.display = 'none';
+            // Sembunyikan tombol pembuka (Sudah dibetulkan kodenya)
+            document.getElementById('startBtn').style.display = 'none';
 
-            // Tampilkan kartu surat cinta
+            // Tampilkan kartu surat
             const letter = document.getElementById('letterSection');
             letter.style.display = 'block';
             setTimeout(() => {
@@ -183,7 +173,7 @@
             if (indexKarakter < teksSekarang.length) {
                 document.getElementById("typingTarget").innerHTML += teksSekarang.charAt(indexKarakter);
                 indexKarakter++;
-                setTimeout(typeWriter, 55); // Kecepatan ketikan emosional
+                setTimeout(typeWriter, 55);
             } else {
                 sedangMengetik = false;
                 tampilkanTombolNavigasi();
@@ -201,13 +191,12 @@
         }
 
         function lanjutBabak() {
-            if (sedangMengetik) return; // Mencegah klik ganda saat skrip mengetik
+            if (sedangMengetik) return;
             
             if (babakSekarang < babakSurat.length - 1) {
                 babakSekarang++;
                 mulaiKetikBabak();
             } else {
-                // Babak akhir selesai, memunculkan popup tanda pelukan hangat virtual
                 alert("Makasih ya udah dibaca sampai habis kesayangan aku. Ingat, kamu gak sendirian menghadapi ini semua. Semangat ya! 🥰🤍");
             }
         }
